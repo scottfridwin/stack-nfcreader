@@ -10,6 +10,7 @@ services:
   nfcmqttbridge:
     image: ghcr.io/scottfridwin/nfc-mqtt-bridge:1.0.0
     container_name: nfc-mqtt-bridge
+    user: "${UID_NFCREADER}:${GID_SERVICES}"
     networks:
       public:
     environment:
