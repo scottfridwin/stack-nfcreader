@@ -8,7 +8,7 @@ secrets:
 
 services:
   nfcmqttbridge:
-    image: ghcr.io/scottfridwin/nfc-mqtt-bridge:1.0.0
+    image: ghcr.io/scottfridwin/nfc-mqtt-bridge:1.1.0
     container_name: nfc-mqtt-bridge
     user: "${UID_NFCREADER}:${GID_SERVICES}"
     networks:
@@ -18,15 +18,11 @@ services:
       - MQTT_PORT=${MQTT_PORT}
       - MQTT_USERNAME=${MQTT_USERNAME}
       - MQTT_PASSWORD_FILE=/run/secrets/nfcmqttbridge_mqtt_password
-      - MQTT_TOPIC=${MQTT_TOPIC}
       - DEVICE_NAME=${DEVICE_NAME}
       - DEVICE_ID=${DEVICE_ID}
       - LOG_LEVEL=INFO
     secrets:
       - nfcmqttbridge_mqtt_password
-    devices:
-      - /dev/bus/usb:/dev/bus/usb
     volumes:
       - /run/pcscd:/run/pcscd:rw
-      - /run/pcscd:/var/run/pcscd:rw
     restart: unless-stopped
