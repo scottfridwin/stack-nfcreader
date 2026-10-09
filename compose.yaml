@@ -8,9 +8,16 @@ secrets:
 
 services:
   nfcmqttbridge:
-    image: ghcr.io/scottfridwin/nfc-mqtt-bridge:1.1.0
+    image: ghcr.io/scottfridwin/nfc-mqtt-bridge:1.2.0
     container_name: nfc-mqtt-bridge
     user: "${UID_NFCREADER}:${GID_SERVICES}"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     networks:
       public:
     environment:

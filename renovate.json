@@ -16,6 +16,15 @@
       "datasourceTemplate": "docker"
     }
   ],
+  "packageRules": [
+    {
+      "description": "Own image: tested and released by its repo, so deploy minor/patch updates hands-off",
+      "matchPackageNames": ["ghcr.io/scottfridwin/nfc-mqtt-bridge"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "ignoreTests": true
+    }
+  ],
   "assignees": [
     "scottfridwin"
   ]
